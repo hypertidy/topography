@@ -10,7 +10,7 @@
 #' @examples
 #' topography_source("aws")
 #' topography_source("gebco")
-topography_source <- function(x = c("gebco", "aws")) {
+topography_source <- function(x = c("gebco", "aws", "mars", "rema_100m")) {
   x <- match.arg(x)
   services <- topography_services()
   idx <- match(x, services$label)
@@ -30,9 +30,12 @@ topography_source <- function(x = c("gebco", "aws")) {
 #' @examples
 #' topography_services()
 topography_services <- function() {
-  tibble::tibble(name = c("GEBCO_GRID", "AWS_ELEVATION-TILES-PROD"),
-                 label = c("gebco", "aws"),
+  tibble::tibble(name = c("GEBCO_GRID", "AWS_ELEVATION-TILES-PROD", "HRSC_MOLA_Blend", "REMA_100m"),
+                 label = c("gebco", "aws", "mars", "rema_100m"),
                  file =
                     c(                      system.file("gdalwms/gebco_grid.xml", package = "topography", mustWork = TRUE),
-                                            system.file("gdalwms/aws_elevation-tiles-prod.xml", package = "topography", mustWork = TRUE)))
+                                            system.file("gdalwms/aws_elevation-tiles-prod.xml", package = "topography", mustWork = TRUE),
+                                            "/vsicurl/https://planetarymaps.usgs.gov/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif",
+                                            "/vsicurl/ftp://ftp.data.pgc.umn.edu/elev/dem/setsm/REMA/mosaic/v1.0/100m/REMA_100m_peninsula_dem_filled.tif"
+                    ))
 }

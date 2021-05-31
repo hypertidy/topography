@@ -4,7 +4,7 @@
 \alias{topography_source}
 \title{File path for topography}
 \usage{
-topography_source(x = c("gebco", "aws"))
+topography_source(x = c("gebco", "aws", "mars", "rema_100m"))
 }
 \arguments{
 \item{x}{name of the 'label' of the topography source, see \link{topography_services}}

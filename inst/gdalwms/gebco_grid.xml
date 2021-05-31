@@ -1,0 +1,23 @@
+<GDAL_WMS>
+  <Service name="WMS">
+  <Version>1.1.1</Version>
+  <ServerUrl>https://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?</ServerUrl>
+  <Layers>GEBCO_LATEST</Layers>
+  <SRS>EPSG:4326</SRS>
+  <ImageFormat>image/tiff</ImageFormat>
+  <Transparent>FALSE</Transparent>
+  <BBoxOrder>xyXY</BBoxOrder>
+  </Service>
+  <DataWindow>
+  <UpperLeftX>-180</UpperLeftX>
+  <UpperLeftY>90</UpperLeftY>
+  <LowerRightX>180</LowerRightX>
+  <LowerRightY>-90</LowerRightY>
+  <SizeX>1073741824</SizeX>
+  <SizeY>536870912</SizeY>
+  </DataWindow>
+  <BandsCount>3</BandsCount>
+  <BlockSizeX>1024</BlockSizeX>
+  <BlockSizeY>1024</BlockSizeY>
+  <OverviewCount>20</OverviewCount>
+  </GDAL_WMS>

@@ -1,7 +1,7 @@
 
 
 
-
+## https://github.com/mapbox/rasterio/issues/1846#issuecomment-565531023
 
 read_mapbox_satellite <- function(xylim = NULL, ...) {
   .tp_standard_version_check <- function() {
@@ -42,6 +42,8 @@ library(raster)
 mb <- read_mapbox_satellite(raster(extent(c(-1, 1, -1, 1) * 5e6), res = 25000, crs = "+proj=laea +lat_0=-90"))
 plotRGB(mb)
 
+x <- read_mapbox_satellite(raster(extent(c(-1, 1, -1, 1) * 5e5), res = 1000, crs = "+proj=laea +lat_0=-42 +lon_0=147"))
+plotRGB(x)
 
 
 
@@ -80,10 +82,10 @@ read_mapbox_terrain <- function(xylim = NULL, ...) {
 
 
   MAPBOX_API_KEY <- Sys.getenv("MAPBOX_API_KEY")
-  url <- sprintf("https://api.mapbox.com/v4/mapbox.terrain-rgb/${z}/${x}/${y}.png?access_token=%s", MAPBOX_API_KEY)
+  url <- sprintf("https://api.mapbox.com/v4/mapbox.terrain-rgb/${z}/${x}/${y}@2x.png?access_token=%s", MAPBOX_API_KEY)
 
   vfile <- tempfile(fileext = ".xml")
-  writeLines(sprintf(readLines(system.file("examples/mapbox_template.xml", package = "topography", mustWork = TRUE)), url), vfile)
+  writeLines(sprintf(readLines(system.file("examples/mapbox_terrain-rgb_template.xml", package = "topography", mustWork = TRUE)), url), vfile)
 
 
   ext <- topography:::.tp_gebco_defaultgrid(xylim)

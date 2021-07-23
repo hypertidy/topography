@@ -1,15 +1,19 @@
 Package: topography
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Provide Some Straightforward Configuration Sources to Online Topography Data
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Michael",
            family = "Sumner",
            role = c("aut", "cre"),
            email = "mdsumner@gmail.com")
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: Provides a list of some online data sources for topography (elevation, bathymetry) data and adds 
+ augmentation required for use by spatial tools. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    tibble
+URL: https://github.com/hypertidy/topography
+BugReports: https://github.com/hypertidy/topography/issues

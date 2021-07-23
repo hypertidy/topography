@@ -2,6 +2,4 @@
 
 export(topography_services)
 export(topography_source)
-importFrom(raster,extent)
-importFrom(raster,projection)
-importFrom(raster,raster)
+importFrom(tibble,tibble)

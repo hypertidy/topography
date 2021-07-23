@@ -10,7 +10,7 @@
 #' @examples
 #' topography_source("aws")
 #' topography_source("gebco")
-topography_source <- function(x = c("gebco", "aws", "mars", "rema_100m")) {
+topography_source <- function(x = c("gebco", "aws", "mars")) {
   x <- match.arg(x)
   services <- topography_services()
   idx <- match(x, services$label)
@@ -26,7 +26,8 @@ topography_source <- function(x = c("gebco", "aws", "mars", "rema_100m")) {
 #'
 #' See [topography_source] for a direct lookup for a given file.
 #' @export
-#' @value data frame of label, name, file
+#' @return data frame of label, name, file
+#' @importFrom tibble tibble
 #' @examples
 #' topography_services()
 topography_services <- function() {
@@ -36,6 +37,6 @@ topography_services <- function() {
                     c(                      system.file("gdalwms/gebco_grid.xml", package = "topography", mustWork = TRUE),
                                             system.file("gdalwms/aws_elevation-tiles-prod.xml", package = "topography", mustWork = TRUE),
                                             "/vsicurl/https://planetarymaps.usgs.gov/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif",
-                                            "/vsicurl/ftp://ftp.data.pgc.umn.edu/elev/dem/setsm/REMA/mosaic/v1.0/100m/REMA_100m_peninsula_dem_filled.tif"
+                                            "/vsicurl/ftp://ftp.data.pgc.umn.edu/elev/dem/setsm/REMA/mosaic/v1.1/100m/REMA_100m_dem.tif"
                     ))
 }

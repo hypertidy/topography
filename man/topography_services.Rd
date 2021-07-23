@@ -6,6 +6,9 @@
 \usage{
 topography_services()
 }
+\value{
+data frame of label, name, file
+}
 \description{
 Name, label, and file path for online raster sources.
 }

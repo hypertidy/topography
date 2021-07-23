@@ -17,10 +17,11 @@ You can install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
-options(repos = c(
-    hypertidy = 'https://hypertidy.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
-install.packages("topography")
+remotes::install_github("hypertidy/topography")
+#options(repos = c(
+#    hypertidy = 'https://hypertidy.r-universe.dev',
+#    CRAN = 'https://cloud.r-project.org'))
+#install.packages("topography")
 ```
 
 ## Example

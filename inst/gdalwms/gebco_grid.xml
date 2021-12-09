@@ -20,4 +20,4 @@
   <BlockSizeX>1024</BlockSizeX>
   <BlockSizeY>1024</BlockSizeY>
   <OverviewCount>20</OverviewCount>
-  </GDAL_WMS>
+</GDAL_WMS>

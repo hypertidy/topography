@@ -31,13 +31,13 @@ matching grids.
 
 ``` r
 library(gdalio)
-
+source(system.file("raster_format/raster_format.codeR", package = "gdalio", mustWork = TRUE))
 ## read as matrix
-gdalio_matrix <- function(dsn, ...) {
-  v <- gdalio_data(dsn, ...)
-  g <- gdalio_get_default_grid()
-  matrix(v[[1]], g$dimension[1])[,g$dimension[2]:1, drop = FALSE]
-}
+# gdalio_matrix <- function(dsn, ...) {
+#   v <- gdalio_data(dsn, ...)
+#   g <- gdalio_get_default_grid()
+#   matrix(v[[1]], g$dimension[1])[,g$dimension[2]:1, drop = FALSE]
+# }
 ## plot the data
 gdalio_plot <- function(x, col = grey.colors(256), ..., asp = 1,  useRaster = TRUE) {
   g <- gdalio_get_default_grid()
@@ -53,47 +53,36 @@ gdalio_set_default_grid(list(extent = c(50, 180, -85, -20),
 
 ## package to configure some transparent online topography sources
 library(topography)
-par(mfrow = c(2, 2))
+
 gebco <- gdalio_matrix(topography_source(x = "gebco"))
 gdalio_plot(gebco, main = "GEBCO", asp = 1.6)
-aws <- gdalio_matrix(topography_source("aws"))
-gdalio_plot(aws, main = "AWS TERRAIN TILES", asp= 1.6)
-## for mars we can't pretend to be earth anymore
-gmars <- gdalio_get_default_grid()
-gmars$projection <- "+proj=longlat +R=3389500"
-gdalio_set_default_grid(gmars)
-mars <- gdalio_matrix(topography_source("mars"))
-gdalio_plot(mars, main = "MARS", asp = 1.6)
-
-
-
-## set default grid to use as target
-gdalio_set_default_grid(list(extent = c(-1, 1, -1, 1) * 5e6,
-                             dimension = as.integer(c(1024, 1024)),
-                             projection = "EPSG:3031"))
-
-par(mfrow = c(2, 2))
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-gebco <- gdalio_matrix(topography_source(x = "gebco"))
-gdalio_plot(gebco, main = "GEBCO")
-aws <- gdalio_matrix(topography_source("aws"))
-gdalio_plot(aws, main = "AWS TERRAIN TILES")
-## for mars we can't pretend to be earth anymore
-gmars <- gdalio_get_default_grid()
-gmars$projection <- "+proj=stere +lat_0=-90 +type=crs +R=3389500"
-gdalio_set_default_grid(gmars)
-mars <- gdalio_matrix(topography_source("mars"))
-gdalio_plot(mars, main = "MARS")
-## this isn't really practical because ftp, we'll see
-#rema <- gdalio_matrix(topography_source("rema"))
-#gdalio_plot(rema)
+## for SRTM we want much smaller regions WIP
+
+ll <- cbind(55.7558, 37.6173)[,2:1, drop = FALSE]
+g <- list(extent = c(-1, 1, -1, 1) * 9000, dimension = c(512, 512), projection = sprintf("+proj=laea +lon_0=%f +lat_0=%f", ll[1], ll[2]))
+gdalio_set_default_grid(g)
+srtm <- gdalio_matrix(topography_source(x = "srtm_gl1"))
+gdalio_plot(srtm, main = "srtm_gl1 30m", asp = 1.6)
+
+gdalio_raster(topography_source(x = "srtm_gl1"))
+#> Warning: multiple methods tables found for 'approxNA'
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />
+
+    #> class      : RasterLayer 
+    #> dimensions : 512, 512, 262144  (nrow, ncol, ncell)
+    #> resolution : 35.15625, 35.15625  (x, y)
+    #> extent     : -9000, 9000, -9000, 9000  (xmin, xmax, ymin, ymax)
+    #> crs        : +proj=laea +lat_0=55.7558 +lon_0=37.6173 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs 
+    #> source     : memory
+    #> names      : layer 
+    #> values     : 100, 223  (min, max)
 
 ------------------------------------------------------------------------
 

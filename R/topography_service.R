@@ -72,7 +72,7 @@ more_topography_services <- function() {
 topography_source_text <- function(name = c("gebco", "gebco_image", "aws_elevation")) {
   name <- match.arg(name)
   file <- switch(name,
-                 gebco = "/vsicurl/http://data.raadsync.cloud.edu.au/gebco/GEBCO_2019.tif",
+                 gebco = "/vsicurl/https://public.services.aad.gov.au/datasets/science/GEBCO_2019_GEOTIFF/GEBCO_2019.tif",
          gebco_image = system.file("gdalwms/gebco_grid.xml",
                                    package = "topography", mustWork = TRUE),
          aws_elevation  = system.file("gdalwms/aws_elevation-tiles-prod.xml",

@@ -1,3 +1,7 @@
+topos <-  rbind(topography_services(), more_topography_services()) |> dplyr::distinct()
+
+readr::write_csv(topos, "inst/extdata/topos.csv")
+
 #raadtools::topofile knows about these
 # topos <- c("gebco_08",  "ibcso",
 #   "etopo1", "etopo2",

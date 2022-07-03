@@ -1,0 +1,61 @@
+name,label,file
+GEBCO,gebco,/vsicurl/https://public.services.aad.gov.au/datasets/science/GEBCO_2019_GEOTIFF/GEBCO_2019.tif
+SRTM15Plus,srtm15,/vsicurl/https://opentopography.s3.sdsc.edu/raster/SRTM15Plus/SRTM15Plus_srtm.vrt
+"NASADEM",nasadem,/vsicurl/https://opentopography.s3.sdsc.edu/raster/NASADEM/NASADEM_be.vrt
+SRTM_GL1,srtm_gl1,/vsicurl/https://opentopography.s3.sdsc.edu/raster/SRTM_GL1/SRTM_GL1_srtm.vrt
+SRTM_GL3,srtm_gl3,/vsicurl/https://opentopography.s3.sdsc.edu/raster/SRTM_GL3/SRTM_GL3_srtm.vrt
+GEBCO_IMAGE,gebco_image,"<GDAL_WMS>
+  <Service name=""WMS"">
+  <Version>1.1.1</Version>
+  <ServerUrl>https://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?</ServerUrl>
+  <Layers>GEBCO_LATEST</Layers>
+  <SRS>EPSG:4326</SRS>
+  <ImageFormat>image/tiff</ImageFormat>
+  <Transparent>FALSE</Transparent>
+  <BBoxOrder>xyXY</BBoxOrder>
+  </Service>
+  <DataWindow>
+  <UpperLeftX>-180</UpperLeftX>
+  <UpperLeftY>90</UpperLeftY>
+  <LowerRightX>180</LowerRightX>
+  <LowerRightY>-90</LowerRightY>
+  <SizeX>1073741824</SizeX>
+  <SizeY>536870912</SizeY>
+  </DataWindow>
+  <BandsCount>3</BandsCount>
+  <BlockSizeX>1024</BlockSizeX>
+  <BlockSizeY>1024</BlockSizeY>
+  <OverviewCount>20</OverviewCount>
+</GDAL_WMS>
+"
+AWS_ELEVATION,aws_elevation,"<GDAL_WMS>
+  <Service name=""TMS"">
+    <ServerUrl>https://s3.amazonaws.com/elevation-tiles-prod/geotiff/${z}/${x}/${y}.tif</ServerUrl>
+  </Service>
+  <DataWindow>
+    <UpperLeftX>-20037508.34</UpperLeftX>
+    <UpperLeftY>20037508.34</UpperLeftY>
+    <LowerRightX>20037508.34</LowerRightX>
+    <LowerRightY>-20037508.34</LowerRightY>
+    <TileLevel>14</TileLevel>
+    <TileCountX>1</TileCountX>
+    <TileCountY>1</TileCountY>
+    <YOrigin>top</YOrigin>
+  </DataWindow>
+  <Projection>EPSG:3857</Projection>
+  <BlockSizeX>512</BlockSizeX>
+  <BlockSizeY>512</BlockSizeY>
+  <BandsCount>1</BandsCount>
+  <DataType>Int16</DataType>
+  <ZeroBlockHttpCodes>403,404</ZeroBlockHttpCodes>
+  <DataValues>
+    <NoData>-32768</NoData>
+  </DataValues>
+  <Cache/>
+</GDAL_WMS>
+"
+HRSC_MOLA_Blend,mars,/vsicurl/https://planetarymaps.usgs.gov/mosaic/Mars/HRSC_MOLA_Blend/Mars_HRSC_MOLA_BlendDEM_Global_200mp_v2.tif
+REMA_100m,rema_100m,/vsicurl/ftp://ftp.data.pgc.umn.edu/elev/dem/setsm/REMA/mosaic/v1.1/100m/REMA_100m_dem.tif
+ID18_Struble_op,id18_struble_op,/vsicurl/https://opentopography.s3.sdsc.edu/raster/ID18_Struble/ID18_Struble_op.vrt
+ID18_Struble_hh,id18_struble_hh,/vsicurl/https://opentopography.s3.sdsc.edu/raster/ID18_Struble/ID18_Struble_hh.vrt
+ID18_Struble_be,id18_struble_be,/vsicurl/https://opentopography.s3.sdsc.edu/raster/ID18_Struble/ID18_Struble_be.vrt
